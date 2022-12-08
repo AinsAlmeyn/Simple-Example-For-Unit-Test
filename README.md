@@ -186,43 +186,43 @@
     	}
 	}
 
-**5.1 = Her data icin farkli sonuc gormek istemiyorsak.
-	[MemberData(nameof(Datas.sumDatas), MemberType = typeof(Datas), DisableDiscoveryEnumeration = true)]
+	**5.1 = Her data icin farkli sonuc gormek istemiyorsak.
+		[MemberData(nameof(Datas.sumDatas), MemberType = typeof(Datas), DisableDiscoveryEnumeration = true)]
 
 
-*6 - "ClassData" kullanarak "Object" turunde data tanimlamak
-	public class Datas : IEnumerable<object[]>
-	{
-    	public IEnumerator<object[]> GetEnumerator()
-    	{
-        	yield return new object[] { 3, 5, 8 };
-        	yield return new object[] { 11, 5, 16 };
-        	yield return new object[] { 23, 2, 25 };
-        	yield return new object[] { 33, 44, 87 };
-    	}
-    	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-	}
-	public class MathematicsTest
-	{
-    	[Theory]
-    	[ClassData(typeof(Datas))]
-    	public void SumTest(int number1, int number2, int expected)
-    	{
-        	#region Arrange
-        	Mathematics mathematics = new Mathematics();
-        	#endregion
-        
-		#region Act
-        	int result = mathematics.Sum(number1, number2);
-        	#endregion
-        
-		#region Assert
-        	Assert.Equal(expected, result);
-        	#endregion
-    	}
-	}
-
-
+	*6 - ClassData kullanarak Object turunde data tanimlamak;
+		public class Datas : IEnumerable<object[]>
+		{
+    		public IEnumerator<object[]> GetEnumerator()
+    		{
+        		yield return new object[] { 3, 5, 8 };
+        		yield return new object[] { 11, 5, 16 };
+        		yield return new object[] { 23, 2, 25 };
+        		yield return new object[] { 33, 44, 87 };
+    		}
+    		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+		}
+		public class MathematicsTest
+		{
+    		[Theory]
+    		[ClassData(typeof(Datas))]
+    		public void SumTest(int number1, int number2, int expected)
+    		{
+	        	#region Arrange
+	        	Mathematics mathematics = new Mathematics();
+	        	#endregion
+	        
+			#region Act
+	        	int result = mathematics.Sum(number1, number2);
+	        	#endregion
+	        
+			#region Assert
+	        	Assert.Equal(expected, result);
+	        	#endregion
+	    	}
+		}
+	
+	
 *7 - "ClassData" kullanarak "Istedigimiz" turde data tanimlamak icin TheoryData<n,n,n> seklinde implemente edilecek interfaceyi veriyoruz.
 
 	public class TypeSafeData : TheoryData<int, int, int>
