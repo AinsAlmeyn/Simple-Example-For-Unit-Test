@@ -248,7 +248,7 @@
 		#region Act
         	int result = mathematics.Sum(number1, number2);
         	#endregion
-        
+	        
 		#region Assert
         	Assert.Equal(expected, result);
         	#endregion
@@ -259,70 +259,70 @@
      Bunun maliyetini azaltmak icin ise Test sinifimizi IClassFixture<TestEdilecekSinif> seklinde interfaceden
      implemente etmeliyiz.
 
-*8 
-	public class MathematicsTest : IClassFixture<Mathematics>
-	{
-    	Mathematics _mathematics;
-    	public MathematicsTest(Mathematics mathematics)
-    	{
-        	_mathematics = mathematics;
-    	}
-    	[Theory]
-    	[ClassData(typeof(TypeSafeData))]
-    	public void SumTest(int number1, int number2, int expected)
-    	{
-        	Task.Delay(5000).Wait();
-        	#region Act
-        	int result = _mathematics.Sum(number1, number2);
-        	#endregion
+	*8 
+		public class MathematicsTest : IClassFixture<Mathematics>
+		{
+    		Mathematics _mathematics;
+    		public MathematicsTest(Mathematics mathematics)
+    		{
+        		_mathematics = mathematics;
+    		}
+    		[Theory]
+    		[ClassData(typeof(TypeSafeData))]
+    		public void SumTest(int number1, int number2, int expected)
+    		{
+        		Task.Delay(5000).Wait();
+        		#region Act
+        		int result = _mathematics.Sum(number1, number2);
+        		#endregion
         
-		#region Assert
-        	Assert.Equal(expected, result);
-        	#endregion
-    	}
-    	[Fact]
-    	public void SubtractTest()
-    	{
-        	Task.Delay(5000).Wait();
-        	#region Arrange
-        	int number1 = 10;
-        	int number2 = 20;
-        	int expected = -10;
-        	#endregion
+			#region Assert
+        		Assert.Equal(expected, result);
+        		#endregion
+    		}
+    		[Fact]
+    		public void SubtractTest()
+    		{
+        		Task.Delay(5000).Wait();
+        		#region Arrange
+        		int number1 = 10;
+        		int number2 = 20;
+        		int expected = -10;
+        		#endregion
 	
-        	#region Act
-        	int result = _mathematics.Subtract(number1, number2);
-        	#endregion
+        		#region Act
+        		int result = _mathematics.Subtract(number1, number2);
+        		#endregion
         	
-		#region Assert
-        	Assert.Equal(expected, result);
-        	#endregion
-    	}
-    	[Theory, InlineData(3, 5)]
-    	public void MultiplyTest(int number1, int number2)
-    	{
-        	Task.Delay(5000).Wait();
-        	#region Act
-        	int result = _mathematics.Multiply(number1, number2);
-        	#endregion
+			#region Assert
+        		Assert.Equal(expected, result);
+        		#endregion
+    		}
+    		[Theory, InlineData(3, 5)]
+    		public void MultiplyTest(int number1, int number2)
+    		{
+	        	Task.Delay(5000).Wait();
+        		#region Act
+	        	int result = _mathematics.Multiply(number1, number2);
+        		#endregion
 	
-        	#region Assert
-        	Assert.Equal(15, result);
-        	#endregion
-    	}
-    	[Theory, InlineData(30, 5, 6)]
-    	public void DivideTest(int number1, int number2, int expected)
-    	{
-        	Task.Delay(5000).Wait();
-        	#region Act
-        	int result = _mathematics.Divide(number1, number2);
-        	#endregion
-        	
-		#region Assert
-        	Assert.Equal(expected, result);
-        	#endregion
-    	}
-	}
+        		#region Assert
+        		Assert.Equal(15, result);
+        		#endregion
+    		}
+    		[Theory, InlineData(30, 5, 6)]
+    		public void DivideTest(int number1, int number2, int expected)
+    		{
+        		Task.Delay(5000).Wait();
+        		#region Act
+        		int result = _mathematics.Divide(number1, number2);
+        		#endregion
+	        	
+			#region Assert
+	        	Assert.Equal(expected, result);
+	        	#endregion
+    		}
+		}
 
 11 - Islemlerin hepsini ayni anda test etmek icin ise hepsini ayri bir sinifta test etmeliyiz.
 
@@ -371,20 +371,20 @@ iki kere çalıştırılması durumunda testten geçeceği bildirilmiştir.
 
 14 - Throws Bir metodun fırlattığı exception’ı test edebilmemizi sağlayan metottur.
 
-*11 - 
-	public class MathematicsTest
-	{
-    	[Fact]
-    	public void DivideTest()
-    	{
-        	Mathematics mathematics = new Mathematics();
-        	var mathematicsMock = new Mock<IMathematics>();
-        	mathematicsMock.Setup(m => m.Divide(1, 0))
-            	.Throws<DivideByZeroException>();
+	*11 - 
+		public class MathematicsTest
+		{
+    		[Fact]
+    		public void DivideTest()
+    		{
+        		Mathematics mathematics = new Mathematics();
+        		var mathematicsMock = new Mock<IMathematics>();
+        		mathematicsMock.Setup(m => m.Divide(1, 0))
+            		.Throws<DivideByZeroException>();
  
-	        var exception = Assert.Throws<DivideByZeroException>(() => mathematics.Divide(1, 0));
-    	}
-	}
+		        var exception = Assert.Throws<DivideByZeroException>(() => mathematics.Divide(1, 0));
+ 	   	}
+		}
 
 
 Kaynak :
