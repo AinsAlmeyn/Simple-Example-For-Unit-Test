@@ -1,12 +1,16 @@
 1 - Test edilecek proje hazirlanmali
+
 2 - Test edecegimiz UnitTestProjesini ayni solution icinde olusturuyoruz.
+
 3 - Gerekli kutuphaneleri kuruyoruz
 	1 - Microsoft.NET.Test.Sdk : xUnit.Net ile yazılmış kodların build edilmesini sağlayan SDK’dır.
 	2 - xunit : xUnit.Net içerisinde kullanılacak tüm member’lar bu pakettedir.
 	3 - xunit.runner.visualstudio : xUnit.Net ile yazılan test kodlarının Test Explorer penceresinde çalıştırılabilmesini sağlayan pakettir.
+
 4 - Test edecegimiz projeyi Test etmemizi saglayacak olan projede referans olarak ekliyoruz.
 
 5 - Testler 3 asamadan olusur:
+
 	1 - Arrange : Test edilecek metodun kullanacağı kaynakların hazırlandığı bölümdür. Değişken tanımlama, nesne oluşturma vs. gerçekleştirilir.
 	2 - Act : Arrange aşamasında hazırlanan değişkenler yahut nesneler eşliğinde test edilecek olan metodun çalıştırıldığı bölümdür. Mümkün mertebe kısa ve öz olması makbuldür.
 	3 - Assert : Act aşamasında yapılan testin doğrulama evresidir. Tek bir Act’te birden fazla sonuç gerçekleşebilir. Misal olarak; exception fırlatılabilir yahut herhangi bir türde result dönebilir.
